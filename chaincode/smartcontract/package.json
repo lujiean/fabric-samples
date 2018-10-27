@@ -1,0 +1,32 @@
+{
+  "name": "mycoin",
+  "version": "0.0.44-SNAPSHOT",
+  "description": "",
+  "private": true,
+  "author": "Accenture",
+  "scripts": {
+    "build": "npm run clean && npm run copy:config && npm run lint && tsc",
+    "clean": "rimraf dist build",
+    "copy:config": "cpx \"src/config/**/*\" build/dist/config/",
+    "lint": "tslint src/app/**/*.ts --force -t stylish",
+    "report:sonar": "sreporter",
+    "start": "node smartcontract-startup.js",
+    "docs": "typedoc --out build/docs/typedoc src/app -t stylish -m file"
+  },
+  "dependencies": {
+    "fabric-shim": "1.1.2",
+    "yup": "0.26.0"
+  },
+  "devDependencies": {
+    "@theledger/fabric-shim-types": "1.0.6",
+    "@types/js-yaml": "3.11.0",
+    "@types/node": "10.3.2",
+    "concurrently": "3.5.1",
+    "cpx": "1.5.0",
+    "rimraf": "2.6.2",
+    "sonar-web-frontend-reporters": "3.3.0",
+    "tslint": "5.9.1",
+    "typescript": "2.7.2",
+    "typedoc": "0.11.1"
+  }
+}

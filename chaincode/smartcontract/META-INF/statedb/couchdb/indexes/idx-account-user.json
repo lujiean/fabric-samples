@@ -1,0 +1,12 @@
+{
+  "index": {
+    "fields": [
+      "docType",
+      "user"
+    ]
+  },
+  "ddoc": "idx-doctype-user-doc",
+  "name": "idx-doctype-user",
+  "type": "json"
+}
+
