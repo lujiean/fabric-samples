@@ -8,9 +8,9 @@ version: '2'
 volumes:
   orderer.example.com:
   peer0.org1.example.com:
-  peer1.org1.example.com:
-  peer0.org2.example.com:
-  peer1.org2.example.com:
+  # peer1.org1.example.com:
+  # peer0.org2.example.com:
+  # peer1.org2.example.com:
 
 networks:
   byfn:
@@ -33,29 +33,29 @@ services:
     networks:
       - byfn
 
-  peer1.org1.example.com:
-    container_name: peer1.org1.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org1.example.com
-    networks:
-      - byfn
+  # peer1.org1.example.com:
+  #   container_name: peer1.org1.example.com
+  #   extends:
+  #     file:  base/docker-compose-base.yaml
+  #     service: peer1.org1.example.com
+  #   networks:
+  #     - byfn
 
-  peer0.org2.example.com:
-    container_name: peer0.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer0.org2.example.com
-    networks:
-      - byfn
+  # peer0.org2.example.com:
+  #   container_name: peer0.org2.example.com
+  #   extends:
+  #     file:  base/docker-compose-base.yaml
+  #     service: peer0.org2.example.com
+  #   networks:
+  #     - byfn
 
-  peer1.org2.example.com:
-    container_name: peer1.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org2.example.com
-    networks:
-      - byfn
+  # peer1.org2.example.com:
+  #   container_name: peer1.org2.example.com
+  #   extends:
+  #     file:  base/docker-compose-base.yaml
+  #     service: peer1.org2.example.com
+  #   networks:
+  #     - byfn
 
   cli:
     container_name: cli
@@ -70,7 +70,8 @@ services:
       - CORE_PEER_ID=cli
       - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_TLS_ENABLED=true
+      # - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_ENABLED=false
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
@@ -86,8 +87,8 @@ services:
     depends_on:
       - orderer.example.com
       - peer0.org1.example.com
-      - peer1.org1.example.com
-      - peer0.org2.example.com
-      - peer1.org2.example.com
+      # - peer1.org1.example.com
+      # - peer0.org2.example.com
+      # - peer1.org2.example.com
     networks:
       - byfn
