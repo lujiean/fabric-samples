@@ -45,15 +45,83 @@ export class BcBankAccountImpl extends BcBankAccount {
   }
 
   public async updateAccount(param: string): Promise<any> {
-    throw new Error('Method not implemented.');
+    const params = await this.checkNewAccountParam(param);
+
+    const account = new BcAccount();
+    account.user = params.user;
+    account.age = params.age;
+    account.sex = params.sex;
+    account.phoneNumber = params.phoneNumber;
+    account.requestDate = params.requestDate;
+
+    const key = Helpers.generateHashCode(JSON.stringify(account));
+
+    this.logger.debug(`key: ${key}`);
+    this.logger.debug(`object: ${await this.stubHelper.getStateAsString(key)}`);
+    if (await this.stubHelper.exists(key)) {
+      // update account
+      await this.stubHelper.putState(key, account);
+    }
+    else{
+      throw new SystemError('ACCOUNT_NOT_EXIST');
+    }
+
+    // throw new Error('Method not implemented.');
   }
 
   public async deleteAccount(param: string): Promise<any> {
-    throw new Error('Method not implemented.');
+    const params = await this.checkNewAccountParam(param);
+
+    const account = new BcAccount();
+    account.user = params.user;
+    account.age = params.age;
+    account.sex = params.sex;
+    account.phoneNumber = params.phoneNumber;
+    account.requestDate = params.requestDate;
+
+    const key = Helpers.generateHashCode(JSON.stringify(account));
+
+    this.logger.debug(`key: ${key}`);
+    this.logger.debug(`object: ${await this.stubHelper.getStateAsString(key)}`);
+    if (await this.stubHelper.exists(key)) {
+      // update account
+      await this.stubHelper.deleteState(key);
+    }
+    else{
+      throw new SystemError('ACCOUNT_NOT_EXIST');
+    }
+
+    // throw new Error('Method not implemented.');
   }
 
   public async getAccount(param: string): Promise<any> {
-    throw new Error('Method not implemented.');
+    const params = await this.checkNewAccountParam(param);
+
+    const account = new BcAccount();
+    account.user = params.user;
+    account.age = params.age;
+    account.sex = params.sex;
+    account.phoneNumber = params.phoneNumber;
+    account.requestDate = params.requestDate;
+
+    const key = Helpers.generateHashCode(JSON.stringify(account));
+
+    this.logger.debug(`key: ${key}`);
+    this.logger.debug(`object: ${await this.stubHelper.getStateAsString(key)}`);
+    if (await this.stubHelper.exists(key)) {
+      // get account
+      // const accounts: BcAccount[] =
+      // await (new AllAccountRequestModel())
+      //   .select('queryAllAccount', query, this.stubHelper) as BcAccount[];
+
+    // 业务处理
+    return accounts;
+    }
+    else{
+      throw new SystemError('ACCOUNT_NOT_EXIST');
+    }
+
+    // throw new Error('Method not implemented.');
   }
 
   public async queryAllAccount(param: string): Promise<any> {

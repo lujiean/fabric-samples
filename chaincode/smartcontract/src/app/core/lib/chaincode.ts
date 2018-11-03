@@ -44,7 +44,7 @@ export class Chaincode implements ChaincodeInterface {
 
     const ret = stub.getFunctionAndParameters();
 
-    return this.executeMethod('newAccount', ret.params, stub, true);
+    return this.executeMethod('newAccountRequest', ret.params, stub, true);
   }
 
   /**
