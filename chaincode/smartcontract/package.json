@@ -11,7 +11,8 @@
     "lint": "tslint src/app/**/*.ts --force -t stylish",
     "report:sonar": "sreporter",
     "start": "node smartcontract-startup.js",
-    "docs": "typedoc --out build/docs/typedoc src/app -t stylish -m file"
+    "docs": "typedoc --out build/docs/typedoc src/app -t stylish -m file",
+    "depoly": "echo 'test depoly' && echo $PWD"
   },
   "dependencies": {
     "fabric-shim": "1.1.2",
