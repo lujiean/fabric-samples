@@ -115,7 +115,7 @@ export class BcBankAccountImpl extends BcBankAccount {
       //   .select('queryAllAccount', query, this.stubHelper) as BcAccount[];
 
     // 业务处理
-    return accounts;
+    // return accounts;
     }
     else{
       throw new SystemError('ACCOUNT_NOT_EXIST');
