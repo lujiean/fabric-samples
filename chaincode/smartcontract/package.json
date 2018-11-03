@@ -12,7 +12,7 @@
     "report:sonar": "sreporter",
     "start": "node smartcontract-startup.js",
     "docs": "typedoc --out build/docs/typedoc src/app -t stylish -m file",
-    "depoly": "rimraf deploy && mkdir deploy && cp -r build/dist deploy && cp package.json deploy"
+    "deploy": "rimraf deploy && mkdir deploy && cp -r build/dist deploy && cp package.json deploy"
   },
   "dependencies": {
     "fabric-shim": "1.1.2",
