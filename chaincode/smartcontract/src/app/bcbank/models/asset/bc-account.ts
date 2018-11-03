@@ -12,6 +12,7 @@ export class BcAccount extends Asset {
   public age: number;
   public phoneNumber: string;
   public requestDate: string;
+  public balance: number;
   constructor() {
     super(BcBankDocType.BC_ACCOUNT);
     this.user = '';
@@ -19,5 +20,6 @@ export class BcAccount extends Asset {
     this.age = 0;
     this.phoneNumber = '';
     this.requestDate = '';
+    this.balance = 0;
   }
 }

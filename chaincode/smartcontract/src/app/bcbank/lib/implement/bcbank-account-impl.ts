@@ -27,6 +27,7 @@ export class BcBankAccountImpl extends BcBankAccount {
     account.sex = params.sex;
     account.phoneNumber = params.phoneNumber;
     account.requestDate = params.requestDate;
+    account.balance = params.balance;
 
     const key = Helpers.generateHashCode(JSON.stringify(account));
 
@@ -53,6 +54,7 @@ export class BcBankAccountImpl extends BcBankAccount {
     account.sex = params.sex;
     account.phoneNumber = params.phoneNumber;
     account.requestDate = params.requestDate;
+    account.balance = params.balance;
 
     const key = Helpers.generateHashCode(JSON.stringify(account));
 
@@ -78,6 +80,7 @@ export class BcBankAccountImpl extends BcBankAccount {
     account.sex = params.sex;
     account.phoneNumber = params.phoneNumber;
     account.requestDate = params.requestDate;
+    account.balance = params.balance;
 
     const key = Helpers.generateHashCode(JSON.stringify(account));
 
@@ -103,6 +106,7 @@ export class BcBankAccountImpl extends BcBankAccount {
     account.sex = params.sex;
     account.phoneNumber = params.phoneNumber;
     account.requestDate = params.requestDate;
+    account.balance = params.balance;
 
     const key = Helpers.generateHashCode(JSON.stringify(account));
 
@@ -110,12 +114,19 @@ export class BcBankAccountImpl extends BcBankAccount {
     this.logger.debug(`object: ${await this.stubHelper.getStateAsString(key)}`);
     if (await this.stubHelper.exists(key)) {
       // get account
-      // const accounts: BcAccount[] =
-      // await (new AllAccountRequestModel())
-      //   .select('queryAllAccount', query, this.stubHelper) as BcAccount[];
-
-    // 业务处理
-    // return accounts;
+      const query: QueryBuilder<BcAccount> = {
+        conditions: [
+          {docType: BcBankDocType.BC_ACCOUNT},
+          account.user ? {user: {$eq: account.user}} : null,
+        ]
+      };
+  
+      const accounts: BcAccount[] =
+        await (new AllAccountRequestModel())
+          .select('queryAllAccount', query, this.stubHelper) as BcAccount[];
+  
+      // 业务处理
+      return accounts;
     }
     else{
       throw new SystemError('ACCOUNT_NOT_EXIST');
@@ -150,6 +161,7 @@ export class BcBankAccountImpl extends BcBankAccount {
       age: Yup.number().required(),
       phoneNumber: Yup.string().required(),
       requestDate: Yup.date().required(),
+      balance: Yup.number.required(),
     }));
   }
 

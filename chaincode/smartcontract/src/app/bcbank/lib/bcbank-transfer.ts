@@ -6,7 +6,7 @@ export abstract class BcBankTransfer extends SmartContractBase {
     super(stubHelper, logger);
   }
 
-  public abstract async transfer(param: string): Promise<any>;
+  public abstract async transfer(param1: string, param2: string, bal: number): Promise<any>;
 
   public abstract async balance(param: string): Promise<any>;
 }
